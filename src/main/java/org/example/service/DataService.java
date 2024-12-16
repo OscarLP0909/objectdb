@@ -5,9 +5,18 @@ import java.util.List;
 import org.example.model.Usuario;
 import org.example.model.Comentario;
 
+/**
+ * Servicio para gestionar operaciones de datos.
+ */
 public class DataService {
     private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("objectdb:db/usuarios.odb");
 
+    /**
+     * Registra un nuevo usuario.
+     *
+     * @param correo el correo del usuario
+     * @param nombre el nombre del usuario
+     */
     public static void registrarUsuario(String correo, String nombre) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
@@ -17,6 +26,11 @@ public class DataService {
         em.close();
     }
 
+    /**
+     * Lista los comentarios con una valoración mínima.
+     *
+     * @param valoracionMinima la valoración mínima
+     */
     public static void listarMejoresComentarios(int valoracionMinima) {
         EntityManager em = emf.createEntityManager();
         TypedQuery<Comentario> query = em.createQuery(
@@ -30,6 +44,13 @@ public class DataService {
         em.close();
     }
 
+    /**
+     * Añade un comentario a un usuario.
+     *
+     * @param correoUsuario el correo del usuario
+     * @param contenido el contenido del comentario
+     * @param valoracion la valoración del comentario
+     */
     public static void añadirComentario(String correoUsuario, String contenido, int valoracion) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
@@ -44,6 +65,11 @@ public class DataService {
         em.close();
     }
 
+    /**
+     * Elimina un usuario por su correo.
+     *
+     * @param correoUsuario el correo del usuario
+     */
     public static void eliminarUsuario(String correoUsuario) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
@@ -56,6 +82,9 @@ public class DataService {
         em.close();
     }
 
+    /**
+     * Limpia la base de datos eliminando todos los usuarios y comentarios.
+     */
     public static void limpiarBaseDeDatos() {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
@@ -67,6 +96,4 @@ public class DataService {
         em.close();
         System.out.println("Base de datos limpiada.");
     }
-
-
 }

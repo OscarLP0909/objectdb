@@ -3,20 +3,23 @@ package org.example;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+/**
+ * Utilidad para gestionar la fábrica de EntityManager.
+ */
 public class ObjectDBUtil {
 
-    // Se declara un campo estático de tipo EntityManagerFactory
     private static EntityManagerFactory emf;
 
-    // Bloque estático, que se ejecuta una sola vez cuando la clase es cargada
-    static{
-        // Aquí se inicializa el EntityManagerFactory usando la configuración de "data.odb"
+    static {
         emf = Persistence.createEntityManagerFactory("data.odb");
     }
 
-    // Método público que retorna la instancia de EntityManagerFactory
-    public static EntityManagerFactory getEntityManagerFactory(){
-        // Retorna la instancia previamente creada
+    /**
+     * Retorna la instancia de EntityManagerFactory.
+     *
+     * @return la instancia de EntityManagerFactory
+     */
+    public static EntityManagerFactory getEntityManagerFactory() {
         return emf;
     }
 }

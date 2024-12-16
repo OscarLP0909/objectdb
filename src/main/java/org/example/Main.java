@@ -2,13 +2,15 @@ package org.example;
 
 import static org.example.service.DataService.*;
 
-
+/**
+ * Clase principal para ejecutar la aplicación.
+ */
 public class Main {
     public static void main(String[] args) {
 
         limpiarBaseDeDatos();
 
-        // Pruebas básicas
+        // Pruebas
         registrarUsuario("usuario1@mail.com", "Usuario Uno");
         registrarUsuario("usuario2@mail.com", "Usuario Dos");
         System.out.println("Usuarios registrados");
